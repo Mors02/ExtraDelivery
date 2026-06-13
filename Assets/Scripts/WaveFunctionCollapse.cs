@@ -1,10 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.IO.Compression;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.InputSystem.Interactions;
 
 public class WaveFunctionCollapse : MonoBehaviour
 {
@@ -86,6 +84,8 @@ public class WaveFunctionCollapse : MonoBehaviour
         }
         catch
         {
+            Debug.Log(int.Parse(cellToCollapse.name.Split(" ")[1]) + " has 0 options");
+            Debug.Log(tempGrid.Count);
             Tile selectedTile = _backupTile;
             cellToCollapse.Collapse(selectedTile);
             //Instantiate(selectedTile, cellToCollapse.transform.position, selectedTile.transformHandle.rotation);
@@ -101,7 +101,7 @@ public class WaveFunctionCollapse : MonoBehaviour
     /// </summary>   
     private void UpdateGeneration(int lastCollapsedCellIndex)
     {
-        Debug.Log(lastCollapsedCellIndex);
+        
         List<Cell> newGenerationCell = new List<Cell>(_gridComponents);
         // for each cell in the grid
         for (int y = 0; y < _dimensions; y++)
@@ -151,7 +151,9 @@ public class WaveFunctionCollapse : MonoBehaviour
                         foreach (Tile possibleOption in left.TileOptions)
                         {
                             //retrive the valid options from the tile on the left
+                            
                             int validIndex = Array.FindIndex(_tileObjects, obj => obj == possibleOption);
+                            
                             Tile[] validOption = _tileObjects[validIndex]._rightNeighbours;
                             
                             //update this tile with what can be valid from the left
@@ -243,6 +245,6 @@ public class WaveFunctionCollapse : MonoBehaviour
                 opts += ", " + option.name;
         }
 
-        Debug.Log(opts);
+        UnityEngine.Debug.Log(opts);
     }
 }

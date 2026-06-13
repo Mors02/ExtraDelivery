@@ -34,7 +34,7 @@ public class Cell : MonoBehaviour
         this._collapsed = true;
         this._tileOptions = new Tile[] {selectedTile};
         _selectedTile = selectedTile;
-        Tile obj = Instantiate(_selectedTile, transform.position, Quaternion.identity);
+        Tile obj = Instantiate(_selectedTile, transform.position, _selectedTile.transform.rotation);
         obj.transform.parent = this.transform;
 
     }
