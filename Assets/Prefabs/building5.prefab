@@ -9,6 +9,18 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: d9a770488a04960478749bce875590fa, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d9a770488a04960478749bce875590fa, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d9a770488a04960478749bce875590fa, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d9a770488a04960478749bce875590fa, type: 3}
       propertyPath: m_LocalPosition.x
       value: 7.05385
       objectReference: {fileID: 0}
@@ -51,10 +63,18 @@ PrefabInstance:
     - target: {fileID: -7635826562936255635, guid: d9a770488a04960478749bce875590fa, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: cd40603333a4eb949ba23cd2e01ed030, type: 2}
+      objectReference: {fileID: 2100000, guid: c19660a2c75c38d449e9fd199fd15fb2, type: 2}
     - target: {fileID: 919132149155446097, guid: d9a770488a04960478749bce875590fa, type: 3}
       propertyPath: m_Name
       value: building5
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d9a770488a04960478749bce875590fa, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: d9a770488a04960478749bce875590fa, type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -66,6 +86,15 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: d9a770488a04960478749bce875590fa, type: 3}
       insertIndex: -1
       addedObject: {fileID: 9096864065955637527}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: d9a770488a04960478749bce875590fa, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6131515528296787859}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: d9a770488a04960478749bce875590fa, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1727537483648819571}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: d9a770488a04960478749bce875590fa, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -5388510887846036451}
   m_SourcePrefab: {fileID: 100100000, guid: d9a770488a04960478749bce875590fa, type: 3}
 --- !u!1 &3872462522294814603 stripped
 GameObject:
@@ -146,3 +175,59 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!65 &6131515528296787859
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3872462522294814603}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.9966896, y: 0.10470829, z: 1}
+  m_Center: {x: 0.0016551971, y: 0.04949298, z: 0}
+--- !u!65 &1727537483648819571
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3872462522294814603}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.58691233, y: 0.39023682, z: 0.808615}
+  m_Center: {x: 0.0043292525, y: 0.3048816, z: 0.0095572}
+--- !u!114 &-5388510887846036451
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3872462522294814603}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d513471b42563cd47ae8a9b217d1f831, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BuildingTextureManager
+  fadedAlpha: 0.2
+  fadeDuration: 0.25

@@ -9,6 +9,18 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 33d85a0731cf7c84bb1f4431081e969c, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 33d85a0731cf7c84bb1f4431081e969c, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 33d85a0731cf7c84bb1f4431081e969c, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 33d85a0731cf7c84bb1f4431081e969c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -48,6 +60,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7635826562936255635, guid: 33d85a0731cf7c84bb1f4431081e969c, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: c19660a2c75c38d449e9fd199fd15fb2, type: 2}
     - target: {fileID: 919132149155446097, guid: 33d85a0731cf7c84bb1f4431081e969c, type: 3}
       propertyPath: m_Name
       value: park
@@ -70,6 +86,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 33d85a0731cf7c84bb1f4431081e969c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6546988643539591751}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 33d85a0731cf7c84bb1f4431081e969c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4900060259153611944}
   m_SourcePrefab: {fileID: 100100000, guid: 33d85a0731cf7c84bb1f4431081e969c, type: 3}
 --- !u!1 &2232500688171706361 stripped
 GameObject:
@@ -150,3 +169,24 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!65 &4900060259153611944
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2232500688171706361}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 0.09017901, z: 1}
+  m_Center: {x: 0, y: 0.05316759, z: 0}

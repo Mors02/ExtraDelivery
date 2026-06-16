@@ -9,6 +9,8 @@ public class WaveFunctionCollapse : MonoBehaviour
    [SerializeField]
    private int _dimensions;
    [SerializeField]
+   private int _tileSize = 10;
+   [SerializeField]
    private Tile[] _tileObjects;
    [SerializeField]
    private List<Cell> _gridComponents;
@@ -33,7 +35,7 @@ public class WaveFunctionCollapse : MonoBehaviour
         {
             for (int x = 0; x < _dimensions; x++)
             {
-                Cell newCell = Instantiate(_cellObj, new Vector3(x, 0, y), Quaternion.identity);
+                Cell newCell = Instantiate(_cellObj, new Vector3(x*_tileSize, 0, y*_tileSize), Quaternion.identity);
                 newCell.name = "Cell " + (int)(x + y*_dimensions);
                 newCell.CreateCell(false, _tileObjects);
                 _gridComponents.Add(newCell);

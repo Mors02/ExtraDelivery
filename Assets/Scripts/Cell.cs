@@ -35,6 +35,7 @@ public class Cell : MonoBehaviour
         this._tileOptions = new Tile[] {selectedTile};
         _selectedTile = selectedTile;
         Tile obj = Instantiate(_selectedTile, transform.position, _selectedTile.transform.rotation);
+        this.transform.localScale = obj.transform.localScale;
         obj.transform.parent = this.transform;
 
     }
