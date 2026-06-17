@@ -5,7 +5,7 @@ public class BuildingTextureManager : MonoBehaviour
 {
 
  [Header("Fade Settings")]
-    public float fadedAlpha = 0.2f;
+    public float fadedAlpha = 0.1f;
     public float fadeDuration = 0.25f;
 
     private Renderer _renderer;
@@ -30,8 +30,7 @@ public class BuildingTextureManager : MonoBehaviour
 
     private void StartFade(float targetAlpha)
     {
-        Debug.Log("StartedFade");
-        Debug.Log(targetAlpha);
+    
         if (_fadeRoutine != null)
         {
             StopCoroutine(_fadeRoutine);
@@ -55,7 +54,7 @@ public class BuildingTextureManager : MonoBehaviour
             //lerp between the current alpha and the target by t
             float a = Mathf.Lerp(startAlpha, targetAlpha, t);
             c.a = a;
-            Debug.Log("A: " + a );
+            
             //set the material color
             _material.SetColor(BaseColorID, c);
             //wait for end of frame

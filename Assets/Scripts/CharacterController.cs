@@ -107,12 +107,13 @@ public class CharacterController : MonoBehaviour
             float angle =  angleInRadians * Mathf.Rad2Deg;
 
             //Debug.Log(parallel + ": " + (Mathf.Approximately(parallel, 1f)? "Parellel" : "Not parallel"));
-            Debug.Log("angle: " + angle);
 
             float clampedAngle = Mathf.Clamp(angle, -_tilAngle, _tilAngle);
 
             Vector3 euler = transform.localEulerAngles;
-            euler.z = Mathf.Lerp(euler.z, clampedAngle, _tiltSpeed);
+            //tilt by how percentage the tilt angle is compared to the max tilt
+            Debug.Log(_tiltSpeed * Mathf.Abs(clampedAngle) / _tilAngle);
+            euler.z = Mathf.LerpAngle(euler.z, clampedAngle, _tiltSpeed * Mathf.Abs(clampedAngle) / _tilAngle);
             transform.localEulerAngles = euler;
         }
             
