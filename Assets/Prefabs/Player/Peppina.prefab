@@ -14,9 +14,10 @@ GameObject:
   - component: {fileID: 1934767916760311561}
   - component: {fileID: 5407959134762359521}
   - component: {fileID: 3644982317845161829}
+  - component: {fileID: 7982627094592248640}
   m_Layer: 6
   m_Name: Peppina
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -125,11 +126,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   _animator: {fileID: 1908042033117636056}
-  _rideHeight: 1
-  _rideSpringForceStrength: 1000
-  _rideSpringDamper: 100
-  _rayLength: 1
-  _speed: 10
+  _tiltOnTurn: 0
+  _tilAngle: 0
+  _tiltSpeed: 0
+  _speed: 7
   _acceleration: 20
   _maxAcceleration: 20
   _forceScale: {x: 1, y: 0, z: 1}
@@ -265,6 +265,25 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &7982627094592248640
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4944294245295607382}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d409195628c564346a9dc2bff149f344, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RideHeight
+  _floorMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  _rideHeight: 1
+  _rideSpringForceStrength: 1000
+  _rideSpringDamper: 20
+  _rayLength: 1
 --- !u!1 &6232768151805470317
 GameObject:
   m_ObjectHideFlags: 0
@@ -290,7 +309,7 @@ Transform:
   m_GameObject: {fileID: 6232768151805470317}
   serializedVersion: 2
   m_LocalRotation: {x: 0.04316788, y: -0.7057879, z: -0.04316788, w: 0.7057879}
-  m_LocalPosition: {x: 0, y: -1.01, z: 0}
+  m_LocalPosition: {x: 0, y: -1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5385,7 +5404,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2881e6c0ba79c5541a8d33e67a1b1f9a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.40599823
+      value: 0.4059982
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2881e6c0ba79c5541a8d33e67a1b1f9a, type: 3}
       propertyPath: m_LocalRotation.w
@@ -5455,7 +5474,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0d21f7fb644bdc3478e207539b967442, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.11300087
+      value: -0.1130009
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0d21f7fb644bdc3478e207539b967442, type: 3}
       propertyPath: m_LocalRotation.w
@@ -5525,7 +5544,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0d21f7fb644bdc3478e207539b967442, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.23600101
+      value: 0.236001
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0d21f7fb644bdc3478e207539b967442, type: 3}
       propertyPath: m_LocalRotation.w

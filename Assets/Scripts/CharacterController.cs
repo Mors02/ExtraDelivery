@@ -1,3 +1,5 @@
+using System;
+using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -9,19 +11,14 @@ public class CharacterController : MonoBehaviour
     [SerializeField]
     Animator _animator;
 
+    [SerializeField]
+    private bool _tiltOnTurn;
+    [SerializeField]
+    private float _tilAngle, _tiltSpeed;
+
     RaycastHit _rayHit;
 
     Rigidbody _rb;
-
-    [Header("Rider")]
-    [SerializeField]
-    float _rideHeight;
-    
-    [SerializeField]
-    float _rideSpringForceStrength, _rideSpringDamper;
-
-    [SerializeField]
-    float _rayLength = 0.5f;
 
     [Header("Movement")]
     [SerializeField]
@@ -60,48 +57,7 @@ public class CharacterController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-       HandleRideHeight();
        HandleMove();
-    }
-
-    void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawLine(this.transform.position, this.transform.position + (Vector3.down * _rayLength));
-    }
-
-    void HandleRideHeight()
-    {
-         bool _rayDidHit = Physics.Raycast(this.transform.position, Vector3.down, out _rayHit, _rayLength, _floorMask);
-
-        if (_rayDidHit)
-        {
-            Vector3 vel = _rb.linearVelocity;
-            Vector3 rayDir = transform.TransformDirection(new UnityEngine.Vector3(0, -1, 0));
-
-            Vector3 otherVel = Vector3.zero;
-            Rigidbody hitBody = _rayHit.rigidbody;
-            if (hitBody != null)
-            {
-                otherVel = hitBody.linearVelocity;
-            }
-
-            float rayDirVel = Vector3.Dot(rayDir, vel);
-            float otherDirVel = Vector3.Dot(rayDir, otherVel);
-
-            float relVel = rayDirVel - otherDirVel;
-
-            float x = _rayHit.distance - _rideHeight;
-            float springForce = (x * _rideSpringForceStrength) - (relVel * _rideSpringDamper);
-
-            _rb.AddForce(rayDir * springForce);
-
-            if (hitBody != null)
-            {
-                hitBody.AddForceAtPosition(rayDir * -springForce, _rayHit.point);
-            }
-
-        }
     }
 
     private void HandleMove()
@@ -133,6 +89,35 @@ public class CharacterController : MonoBehaviour
         if (movement.magnitude != 0)
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(movement), 0.15f);
 
+        if (_tiltOnTurn)
+        {
+            float parallel = Vector3.Dot(movement, transform.forward) / _speed;
+            //float angle = Vector3.Angle(movement, transform.forward);
+           
+            // cross product of the movement from the forward
+            float num = (movement.x * transform.forward.z) - (movement.z * transform.forward.x);
+            
+            // dot product of the movement from the forward
+            float den = (movement.x * transform.forward.x) + (movement.z * transform.forward.z);
+
+            // Value in radians
+            float angleInRadians = Mathf.Atan2(num, den);
+
+            // Converts from -180 to 180 (negative values are left, positive are right)
+            float angle =  angleInRadians * Mathf.Rad2Deg;
+
+            //Debug.Log(parallel + ": " + (Mathf.Approximately(parallel, 1f)? "Parellel" : "Not parallel"));
+            Debug.Log("angle: " + angle);
+
+            float clampedAngle = Mathf.Clamp(angle, -_tilAngle, _tilAngle);
+
+            Vector3 euler = transform.localEulerAngles;
+            euler.z = Mathf.Lerp(euler.z, clampedAngle, _tiltSpeed);
+            transform.localEulerAngles = euler;
+        }
+            
+
+
         //clamp the acceleration to the max
         neededAccel = Vector3.ClampMagnitude(neededAccel, maxAccel);
         _rb.AddForce(Vector3.Scale(neededAccel * _rb.mass, _forceScale));
@@ -146,7 +131,8 @@ public class CharacterController : MonoBehaviour
         bool isWalking = _move.magnitude != 0;
 
         //check if we are walking and start or stop the particole system
-        _animator.SetBool("Walking", isWalking);
+        if (_animator != null)
+            _animator.SetBool("Walking", isWalking);
         
         /*//started walking
         if (isWalking && !_wasWalking)
