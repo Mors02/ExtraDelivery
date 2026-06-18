@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1398706790350444913
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8441525232677778952}
+  m_Layer: 0
+  m_Name: GroundCheck
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8441525232677778952
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1398706790350444913}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.033, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7351295712809977149}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2609664251957794426
 GameObject:
   m_ObjectHideFlags: 0
@@ -105,6 +136,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: ad7fdf35452367947b6e32980fc633bf, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8514460258799571814}
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: ad7fdf35452367947b6e32980fc633bf, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8441525232677778952}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ad7fdf35452367947b6e32980fc633bf, type: 3}
       insertIndex: -1
@@ -154,8 +188,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.6981168, y: 0.60165936, z: 1}
-  m_Center: {x: -0.0044658184, y: 0.2623562, z: 0}
+  m_Size: {x: 0.6981168, y: 0.72708124, z: 1.0458832}
+  m_Center: {x: -0.0044658184, y: 0.45149454, z: -0.015716553}
 --- !u!135 &121583592036610706
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -192,6 +226,10 @@ MonoBehaviour:
   _attachPoint: {fileID: 8514460258799571814}
   _inputSystem: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   _player: {fileID: 0}
+  _rb: {fileID: 4905182789118837532}
+  _verticalOffForce: 10
+  _momentumMultiplier: 10
+  _maxMagnitude: 10
 --- !u!54 &4905182789118837532
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -218,7 +256,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 80
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!114 &3553137277499030267
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -244,6 +282,7 @@ MonoBehaviour:
   _forceScale: {x: 1, y: 0, z: 1}
   _footstepDust: {fileID: 0}
   _jumpSpeed: 10
+  _groundCheck: {fileID: 8441525232677778952}
 --- !u!95 &959275323865144182
 Animator:
   serializedVersion: 7

@@ -36,6 +36,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5636602169674248435}
+  - {fileID: 6664818398316131346}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &1908042033117636056
@@ -124,7 +125,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CharacterController
   _floorMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 8247
   _animator: {fileID: 1908042033117636056}
   _tiltOnTurn: 0
   _tilAngle: 0
@@ -135,6 +136,7 @@ MonoBehaviour:
   _forceScale: {x: 1, y: 0, z: 1}
   _footstepDust: {fileID: 3655808730573871588}
   _jumpSpeed: 25
+  _groundCheck: {fileID: 6664818398316131346}
 --- !u!114 &3644982317845161829
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -282,7 +284,7 @@ MonoBehaviour:
     m_Bits: 4294967295
   _rideHeight: 1
   _rideSpringForceStrength: 1000
-  _rideSpringDamper: 20
+  _rideSpringDamper: 60
   _rayLength: 1
 --- !u!1 &6232768151805470317
 GameObject:
@@ -322,6 +324,37 @@ Transform:
   - {fileID: 2842992056283383644}
   m_Father: {fileID: 1592737815063477929}
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: -7}
+--- !u!1 &6583754463071155600
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6664818398316131346}
+  m_Layer: 0
+  m_Name: GroundCheck
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6664818398316131346
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6583754463071155600}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.7, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1592737815063477929}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6696377174991434611
 GameObject:
   m_ObjectHideFlags: 0

@@ -11,6 +11,7 @@ public class CharacterController : MonoBehaviour
     [SerializeField]
     Animator _animator;
 
+    [Header("Tilt on turn")]
     [SerializeField]
     private bool _tiltOnTurn;
     [SerializeField]
@@ -19,6 +20,7 @@ public class CharacterController : MonoBehaviour
     RaycastHit _rayHit;
 
     Rigidbody _rb;
+    RideHeight _rh;
 
     [Header("Movement")]
     [SerializeField]
@@ -41,17 +43,38 @@ public class CharacterController : MonoBehaviour
     [SerializeField]
     private ParticleSystem _footstepDust;
 
-    private bool _wasWalking;
+    private bool _isFlying;
 
     private Vector2 _move;
 
     [Header("Jump")]
     [SerializeField]
     private float _jumpSpeed;
+
+    [SerializeField]
+    private Transform _groundCheck;
+
+    private bool _grounded {
+        get {
+            Physics.Raycast(_groundCheck.position, -_groundCheck.up, out RaycastHit hit, 0.3f, _floorMask);
+            if (hit.collider != null)
+            {
+                /*if (_isFlying)
+                {
+                    StopFlying();
+                }*/
+                return true;
+            }
+                
+
+            return false;
+        }
+    }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         _rb = GetComponent<Rigidbody>();
+        _rh = GetComponent<RideHeight>();
     }
 
     // Update is called once per frame
@@ -82,6 +105,7 @@ public class CharacterController : MonoBehaviour
 
         //retrieve the acceleration needed to reach the desidered movement
         Vector3 neededAccel = (_currentMovement - _rb.linearVelocity) / Time.fixedDeltaTime;
+        
 
         float maxAccel = _maxAcceleration; // * _maxAccelerationForceFactorFromDot.Evaluate(velDot);
 
@@ -112,12 +136,13 @@ public class CharacterController : MonoBehaviour
 
             Vector3 euler = transform.localEulerAngles;
             //tilt by how percentage the tilt angle is compared to the max tilt
-            Debug.Log(_tiltSpeed * Mathf.Abs(clampedAngle) / _tilAngle);
             euler.z = Mathf.LerpAngle(euler.z, clampedAngle, _tiltSpeed * Mathf.Abs(clampedAngle) / _tilAngle);
             transform.localEulerAngles = euler;
         }
             
 
+        if (_grounded && _rh != null)
+            _rh.enabled = true;
 
         //clamp the acceleration to the max
         neededAccel = Vector3.ClampMagnitude(neededAccel, maxAccel);
@@ -156,7 +181,39 @@ public class CharacterController : MonoBehaviour
 
     public void OnJump(InputAction.CallbackContext context)
     {
-        _rb.AddForce(Vector3.up * _jumpSpeed, ForceMode.Impulse);
+        Debug.Log(_grounded);
+        if (_grounded)
+        {
+            _rb.AddForce(Vector3.up * _jumpSpeed, ForceMode.Impulse);
+            if (_rh != null)
+                _rh.enabled = false;
+            
+        }
+            
     }
 
+    public void OnDrawGizmos()
+    {
+        if (_groundCheck)
+        {
+            Gizmos.DrawRay(_groundCheck.position, -_groundCheck.up);
+        }
+            
+    }
+
+
+    public void StartFlying()
+    {
+        Debug.Log("Started");
+        _isFlying = true;
+        _animator.SetBool("Flying", true);
+        Invoke("StopFlying", .5f);
+    }
+
+    public void StopFlying()
+    {
+        Debug.Log("Stopped");
+        _isFlying = false;
+        _animator.SetBool("Flying", false);
+    }
 }
