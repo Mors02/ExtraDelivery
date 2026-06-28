@@ -145,6 +145,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: vespa
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: ad7fdf35452367947b6e32980fc633bf, type: 3}
+      propertyPath: m_TagString
+      value: Vespa
+      objectReference: {fileID: 0}
     - target: {fileID: 1151388028547126963, guid: ad7fdf35452367947b6e32980fc633bf, type: 3}
       propertyPath: m_LocalRotation.w
       value: 0
@@ -263,7 +267,7 @@ MonoBehaviour:
   _rb: {fileID: 4905182789118837532}
   _verticalOffForce: 10
   _momentumMultiplier: 10
-  _maxMagnitude: 10
+  _maxMagnitude: 27
   _contactCheck: {fileID: 4515656174332630303}
   _contactDistance: 0.7
 --- !u!54 &4905182789118837532
@@ -312,9 +316,9 @@ MonoBehaviour:
   _tiltOnTurn: 1
   _tilAngle: 10
   _tiltSpeed: 2
-  _speed: 20
-  _acceleration: 20
-  _maxAcceleration: 25
+  _speed: 30
+  _acceleration: 30
+  _maxAcceleration: 50
   _forceScale: {x: 1, y: 0, z: 1}
   _footstepDust: {fileID: 0}
   _jumpSpeed: 10

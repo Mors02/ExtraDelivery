@@ -69,7 +69,7 @@ public class WaveFunctionCollapse : MonoBehaviour
             
             //tempGrid.Sort((a, b) =>  b.AverageValue() - a.AverageValue());
             tempGrid = tempGrid.OrderByDescending((a) => a.AverageValue()).ThenBy((a) => a.TileOptions.Length).ToList();
-            Debug.Log(tempGrid[0].AverageValue());
+
             if (tempGrid[0].AverageValue() == 0)
                 Debug.LogError(tempGrid[0].name + " has value 0");
             //tempGrid.Sort((a, b) => a.TileOptions.Length - b.TileOptions.Length);
@@ -84,6 +84,7 @@ public class WaveFunctionCollapse : MonoBehaviour
         }
     }
 
+    #region CollapseCell
     /// <summary>
     /// Retrieve a tile from the options and collapse it
     /// </summary>
@@ -97,7 +98,13 @@ public class WaveFunctionCollapse : MonoBehaviour
         //get a random tile from the list
         try
         {
-            Debug.Log( cellToCollapse.name + " value " + cellToCollapse.AverageValue());
+            //if it has no direct access, remove all the roads from the collapsing cell
+            if (!HasDirectAccess(int.Parse(cellToCollapse.name.Split(" ")[1])))
+            {
+                //Debug.LogError(int.Parse(cellToCollapse.name.Split(" ")[1]) + " has NO access");
+                cellToCollapse.Recreatecell(RemoveRoads(cellToCollapse.TileOptions));
+            }
+
             int randomTile = UnityEngine.Random.Range(0, cellToCollapse.TileOptions.Length);
             Tile selectedTile = cellToCollapse.TileOptions[randomTile];
             cellToCollapse.Collapse(selectedTile);
@@ -115,7 +122,9 @@ public class WaveFunctionCollapse : MonoBehaviour
         
         UpdateGeneration(int.Parse(cellToCollapse.name.Split(" ")[1]));
     }
+    #endregion
 
+    #region  UpdateGeneration
     /// <summary>
     /// Update what possible tiles are left in a cell and validates that a tile can exist there
     /// </summary>   
@@ -140,7 +149,7 @@ public class WaveFunctionCollapse : MonoBehaviour
                 else
                 {
                     //else update the option list
-                    List<Tile> options = _tileObjects.ToList();
+                    List<Tile> options = _tileObjects.ToList();                    
                     
                     //only if we're not in the first row
                     if (y > 0)
@@ -156,13 +165,13 @@ public class WaveFunctionCollapse : MonoBehaviour
 
                             Tile[] validOption = RetrieveCorrectTilesOptions(Direction.Down, _tileObjects[validIndex]);/*should pass the valid options of this cell considering all the possible options of the cell above*/
                             //_tileObjects[validIndex]._downNeighbours;
-                            
                             //update this tile with what can be valid from above
                             validOptions = validOptions.Concat(validOption).ToList();
                         }
 
                         CheckValidity(options, validOptions);
                     }
+
 
                     //only if we're not in the last column
                     if (x < _dimensions -1)
@@ -223,9 +232,10 @@ public class WaveFunctionCollapse : MonoBehaviour
                             //update this tile with what can be valid from the left
                             validOptions = validOptions.Concat(validOption).ToList();
                         }
-
                         CheckValidity(options, validOptions);
-                    }
+                    }              
+                        
+ 
 
                     //we create the new valid tiles list
                     Tile[] newTileList = new Tile[options.Count];
@@ -246,6 +256,8 @@ public class WaveFunctionCollapse : MonoBehaviour
 
         StartCoroutine(CheckEntropy());
     }
+
+    #endregion
 
     private void CheckValidity(List<Tile> optionList, List<Tile> validOptions)
     {
@@ -273,6 +285,13 @@ public class WaveFunctionCollapse : MonoBehaviour
         UnityEngine.Debug.Log(opts);
     }
 
+    private Tile[] RemoveRoads(Tile[] options)
+    {   
+        List<Tile> temp = options.ToList();
+        temp.RemoveAll(tile => tile.Type == TileType.Road);
+        return temp.ToArray();
+    }
+
     private Tile[] RetrieveCorrectTilesOptions(Direction directionToCheck, Tile tileToCheck)
     {
         List<Tile> allTiles = _tileObjects.ToList();
@@ -288,6 +307,7 @@ public class WaveFunctionCollapse : MonoBehaviour
                 //if the connection is closed remove also every other road
                 if (tileToCheck.Type == TileType.Road && tileToCheck.Down == SideConnection.Closed)
                     allTiles.RemoveAll(tile => tile.Type == TileType.Road);
+               
                 break;
             case Direction.Up:
                 //remove all tiles that doesn't have the same tipe of connection (closed/open)
@@ -298,6 +318,8 @@ public class WaveFunctionCollapse : MonoBehaviour
                 //if the connection is closed remove also every other road
                 if (tileToCheck.Type == TileType.Road && tileToCheck.Up == SideConnection.Closed)
                     allTiles.RemoveAll(tile => tile.Type == TileType.Road);
+                
+                
                 break;
             case Direction.Left:
                 //remove all tiles that doesn't have the same tipe of connection (closed/open)
@@ -309,6 +331,8 @@ public class WaveFunctionCollapse : MonoBehaviour
                 //if the connection is closed remove also every other road
                 if (tileToCheck.Type == TileType.Road && tileToCheck.Left == SideConnection.Closed)
                     allTiles.RemoveAll(tile => tile.Type == TileType.Road);
+
+                
                 break;
             case Direction.Right:
                 //remove all tiles that doesn't have the same tipe of connection (closed/open)
@@ -320,11 +344,62 @@ public class WaveFunctionCollapse : MonoBehaviour
                 //if the connection is closed remove also every other road
                 if (tileToCheck.Type == TileType.Road && tileToCheck.Right == SideConnection.Closed)
                     allTiles.RemoveAll(tile => tile.Type == TileType.Road);
+
+                
                 break;
         }
 
         return allTiles.ToArray();
     }
+
+    #region HasDirectAccess
+    private bool HasDirectAccess(int cellIndex)
+    {
+        bool directAccess = false;
+        int x = cellIndex % _dimensions;
+        int y = cellIndex / _dimensions;
+
+        if (y > 0)
+        {
+            int up = cellIndex - _dimensions;
+            //check if the tile has direct road access:
+            //a collapsed (3) road (2) has an open connection to current tile (1)
+            directAccess = directAccess || (_gridComponents[up].Collapsed && _gridComponents[up].TileOptions[0].Down == SideConnection.Connected && _gridComponents[up].TileOptions[0].Type == TileType.Road);
+            
+        }
+        
+        if (y < _dimensions - 1)
+        {
+            int down = cellIndex + _dimensions;
+            //check if the tile has direct road access:
+            //a collapsed (3) road (2) has an open connection to current tile (1)
+            directAccess = directAccess || (_gridComponents[down].Collapsed && _gridComponents[down].TileOptions[0].Up == SideConnection.Connected && _gridComponents[down].TileOptions[0].Type == TileType.Road);    
+            
+        }
+        
+        if (x > 0)
+        {
+            int right = cellIndex - 1;
+            //check if the tile has direct road access:
+            //a collapsed (3) road (2) has an open connection to current tile (1)
+            directAccess = directAccess || (_gridComponents[right].Collapsed && _gridComponents[right].TileOptions[0].Left == SideConnection.Connected && _gridComponents[right].TileOptions[0].Type == TileType.Road);    
+
+            
+        }
+        
+        if (x < _dimensions-1)
+        {
+            int left = cellIndex + 1;
+            //check if the tile has direct road access:
+            //a collapsed (3) road (2) has an open connection to current tile (1)       
+             directAccess = directAccess || (_gridComponents[left].Collapsed && _gridComponents[left].TileOptions[0].Right == SideConnection.Connected && _gridComponents[left].TileOptions[0].Type == TileType.Road);    
+             
+        }
+
+        return directAccess;
+        
+    }
+    #endregion
 }
 
 public enum Direction
