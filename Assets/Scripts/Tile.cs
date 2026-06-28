@@ -2,10 +2,14 @@ using UnityEngine;
 
 public class Tile : MonoBehaviour
 {
-   public Tile[] _upNeighbours;
-   public Tile[] _leftNeighbours;
-   public Tile[] _rightNeighbours;
-   public Tile[] _downNeighbours;
+   public Tile[] TilesBlacklist;
+
+   public SideConnection Up;
+   public SideConnection Down;
+   public SideConnection Left;
+   public SideConnection Right;
+
+
 
    public int Value;
 
@@ -17,4 +21,10 @@ public enum TileType
 {
    Building,
    Road
+}
+
+public enum SideConnection
+{
+   Connected,
+   Closed
 }

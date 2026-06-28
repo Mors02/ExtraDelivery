@@ -379,34 +379,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c37e7cf21d12aa9478555940095e697c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
-  _upNeighbours:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 6283830603778409342, guid: 62f4f823610c94b4290aff71523a681f, type: 3}
-  _leftNeighbours:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 6283830603778409342, guid: 62f4f823610c94b4290aff71523a681f, type: 3}
-  _rightNeighbours:
-  - {fileID: 0}
-  _downNeighbours:
-  - {fileID: 0}
+  TilesBlacklist:
+  - {fileID: 229456193286854924, guid: a2ee10c1b3d4c3448939fe896f6463ad, type: 3}
+  - {fileID: 7763978751643537671, guid: c8f8e5fcdc30cdb469e1e2e9230dfa2d, type: 3}
+  - {fileID: 5315520903743662217}
+  - {fileID: 4567627244206808396, guid: 1f882c04a0117bd44854f5f2e442a2aa, type: 3}
+  - {fileID: -122228813931614788, guid: 214b2f9cb60fe594091104111ffd175c, type: 3}
+  - {fileID: -4480160430938097611, guid: 3fa5b1d120125f1498ef4e1b08e34b1c, type: 3}
+  - {fileID: 4786868093854503465, guid: 3092fa0b3412afb45b7957f8adcb0fbe, type: 3}
+  - {fileID: 7708436568828761473, guid: b80a726f66b7c184ca5a8e7435c78135, type: 3}
+  - {fileID: 4603735209270015849, guid: 27603f1e9f4461d4ab6861508f85bfc9, type: 3}
+  Up: 1
+  Down: 0
+  Left: 1
+  Right: 0
   Value: 10
   Type: 1
 --- !u!95 &5619031658350905051

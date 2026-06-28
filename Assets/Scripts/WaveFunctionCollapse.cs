@@ -21,7 +21,7 @@ public class WaveFunctionCollapse : MonoBehaviour
    private Tile _backupTile;
 
    [SerializeField]
-   private int _startingTile;
+   private int _startingTile;   
 
     private void Awake()
     {
@@ -48,7 +48,7 @@ public class WaveFunctionCollapse : MonoBehaviour
         _gridComponents[_startingTile].Collapse(_backupTile);
         UpdateGeneration(_startingTile);
 
-        StartCoroutine("CheckEntropy");
+        //StartCoroutine("CheckEntropy");
     }
 
     /// <summary>
@@ -68,7 +68,7 @@ public class WaveFunctionCollapse : MonoBehaviour
             //reorder the cells based on how many options they have
             
             //tempGrid.Sort((a, b) =>  b.AverageValue() - a.AverageValue());
-            tempGrid = tempGrid.OrderBy((a) => a.AverageValue()).ThenBy((a) => a.TileOptions.Length).ToList();
+            tempGrid = tempGrid.OrderByDescending((a) => a.AverageValue()).ThenBy((a) => a.TileOptions.Length).ToList();
             Debug.Log(tempGrid[0].AverageValue());
             if (tempGrid[0].AverageValue() == 0)
                 Debug.LogError(tempGrid[0].name + " has value 0");
@@ -153,7 +153,9 @@ public class WaveFunctionCollapse : MonoBehaviour
                         {
                             //retrive the valid options from the tile above
                             int validIndex = Array.FindIndex(_tileObjects, obj => obj == possibleOption);
-                            Tile[] validOption = _tileObjects[validIndex]._downNeighbours;
+
+                            Tile[] validOption = RetrieveCorrectTilesOptions(Direction.Down, _tileObjects[validIndex]);/*should pass the valid options of this cell considering all the possible options of the cell above*/
+                            //_tileObjects[validIndex]._downNeighbours;
                             
                             //update this tile with what can be valid from above
                             validOptions = validOptions.Concat(validOption).ToList();
@@ -174,7 +176,8 @@ public class WaveFunctionCollapse : MonoBehaviour
                             
                             int validIndex = Array.FindIndex(_tileObjects, obj => obj == possibleOption);
                             
-                            Tile[] validOption = _tileObjects[validIndex]._rightNeighbours;
+                            Tile[] validOption = RetrieveCorrectTilesOptions(Direction.Right, _tileObjects[validIndex]);
+                            //_tileObjects[validIndex]._rightNeighbours;
                             
                             //update this tile with what can be valid from the left
                             validOptions = validOptions.Concat(validOption).ToList();
@@ -194,7 +197,8 @@ public class WaveFunctionCollapse : MonoBehaviour
                         {
                             //retrive the valid options from the tile below
                             int validIndex = Array.FindIndex(_tileObjects, obj => obj == possibleOption);
-                            Tile[] validOption = _tileObjects[validIndex]._upNeighbours;
+                            Tile[] validOption = RetrieveCorrectTilesOptions(Direction.Up, _tileObjects[validIndex]);
+                            //_tileObjects[validIndex]._upNeighbours;
                             
                             //update this tile with what can be valid from below
                             validOptions = validOptions.Concat(validOption).ToList();
@@ -213,7 +217,8 @@ public class WaveFunctionCollapse : MonoBehaviour
                         {
                             //retrive the valid options from the tile on the left
                             int validIndex = Array.FindIndex(_tileObjects, obj => obj == possibleOption);
-                            Tile[] validOption = _tileObjects[validIndex]._leftNeighbours;
+                            Tile[] validOption = RetrieveCorrectTilesOptions(Direction.Left, _tileObjects[validIndex]);
+                            //_tileObjects[validIndex]._leftNeighbours;
                             
                             //update this tile with what can be valid from the left
                             validOptions = validOptions.Concat(validOption).ToList();
@@ -267,4 +272,65 @@ public class WaveFunctionCollapse : MonoBehaviour
 
         UnityEngine.Debug.Log(opts);
     }
+
+    private Tile[] RetrieveCorrectTilesOptions(Direction directionToCheck, Tile tileToCheck)
+    {
+        List<Tile> allTiles = _tileObjects.ToList();
+        switch (directionToCheck)
+        {
+            case Direction.Down:
+                //remove all tiles that doesn't have the same tipe of connection (closed/open)
+                allTiles.RemoveAll(tile => tile.Up != tileToCheck.Down);
+                //if tileToCheck has a closed down, then retrieve all closed up. Same for open
+                //then remove all the blacklisted tiles
+                allTiles.RemoveAll(tile => tileToCheck.TilesBlacklist.Contains(tile));
+
+                //if the connection is closed remove also every other road
+                if (tileToCheck.Type == TileType.Road && tileToCheck.Down == SideConnection.Closed)
+                    allTiles.RemoveAll(tile => tile.Type == TileType.Road);
+                break;
+            case Direction.Up:
+                //remove all tiles that doesn't have the same tipe of connection (closed/open)
+                allTiles.RemoveAll(tile => tile.Down != tileToCheck.Up);
+                //if tileToCheck has a closed down, then retrieve all closed up. Same for open
+                //then remove all the blacklisted tiles
+                allTiles.RemoveAll(tile => tileToCheck.TilesBlacklist.Contains(tile));
+                //if the connection is closed remove also every other road
+                if (tileToCheck.Type == TileType.Road && tileToCheck.Up == SideConnection.Closed)
+                    allTiles.RemoveAll(tile => tile.Type == TileType.Road);
+                break;
+            case Direction.Left:
+                //remove all tiles that doesn't have the same tipe of connection (closed/open)
+                allTiles.RemoveAll(tile => tile.Right != tileToCheck.Left);
+                //if tileToCheck has a closed down, then retrieve all closed up. Same for open
+                //then remove all the blacklisted tiles
+                allTiles.RemoveAll(tile => tileToCheck.TilesBlacklist.Contains(tile));
+
+                //if the connection is closed remove also every other road
+                if (tileToCheck.Type == TileType.Road && tileToCheck.Left == SideConnection.Closed)
+                    allTiles.RemoveAll(tile => tile.Type == TileType.Road);
+                break;
+            case Direction.Right:
+                //remove all tiles that doesn't have the same tipe of connection (closed/open)
+                allTiles.RemoveAll(tile => tile.Left != tileToCheck.Right);
+                //if tileToCheck has a closed down, then retrieve all closed up. Same for open
+                //then remove all the blacklisted tiles
+                allTiles.RemoveAll(tile => tileToCheck.TilesBlacklist.Contains(tile));
+
+                //if the connection is closed remove also every other road
+                if (tileToCheck.Type == TileType.Road && tileToCheck.Right == SideConnection.Closed)
+                    allTiles.RemoveAll(tile => tile.Type == TileType.Road);
+                break;
+        }
+
+        return allTiles.ToArray();
+    }
+}
+
+public enum Direction
+{
+    Up,
+    Down,
+    Left,
+    Right
 }

@@ -34,7 +34,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7b1897b534ecdb644878675fbb951bc4, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7b1897b534ecdb644878675fbb951bc4, type: 3}
       propertyPath: m_LocalRotation.x
@@ -42,7 +42,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7b1897b534ecdb644878675fbb951bc4, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 1
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7b1897b534ecdb644878675fbb951bc4, type: 3}
       propertyPath: m_LocalRotation.z
@@ -54,7 +54,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7b1897b534ecdb644878675fbb951bc4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 180
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7b1897b534ecdb644878675fbb951bc4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -137,24 +137,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c37e7cf21d12aa9478555940095e697c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
-  _upNeighbours:
-  - {fileID: 0}
-  _leftNeighbours:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  _rightNeighbours:
-  - {fileID: 0}
-  _downNeighbours:
-  - {fileID: 0}
+  TilesBlacklist:
+  - {fileID: 229456193286854924, guid: a2ee10c1b3d4c3448939fe896f6463ad, type: 3}
+  - {fileID: 7763978751643537671, guid: c8f8e5fcdc30cdb469e1e2e9230dfa2d, type: 3}
+  - {fileID: 5315520903743662217, guid: a2a66ad83b79f3643be5977cd3c4e889, type: 3}
+  - {fileID: 4567627244206808396, guid: 1f882c04a0117bd44854f5f2e442a2aa, type: 3}
+  - {fileID: -122228813931614788, guid: 214b2f9cb60fe594091104111ffd175c, type: 3}
+  - {fileID: -4480160430938097611, guid: 3fa5b1d120125f1498ef4e1b08e34b1c, type: 3}
+  - {fileID: 4786868093854503465}
+  - {fileID: 7708436568828761473, guid: b80a726f66b7c184ca5a8e7435c78135, type: 3}
+  - {fileID: 4603735209270015849, guid: 27603f1e9f4461d4ab6861508f85bfc9, type: 3}
+  Up: 0
+  Down: 0
+  Left: 1
+  Right: 0
   Value: 10
   Type: 1
 --- !u!95 &2529004085800991880
