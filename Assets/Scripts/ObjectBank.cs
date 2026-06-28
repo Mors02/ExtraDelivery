@@ -19,7 +19,7 @@ public class ObjectBank : ScriptableObject
         get
         {
             int idx = Random.Range(0, Count);
-            Debug.Log(idx);
+
             return ObjectList[idx];
         }
     }

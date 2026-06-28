@@ -15,4 +15,6 @@ MonoBehaviour:
   ObjectList:
   - {fileID: 5182854395421768388, guid: 3f6c8746ec0cf524dac366771a0aa78f, type: 3}
   - {fileID: 5953102590661345978, guid: e5e6f268cacd39a45801997cfa7368d2, type: 3}
+  - {fileID: 611964832808347711, guid: 162077696f44e3c43b0b347a4add222c, type: 3}
+  - {fileID: 3444471539377519886, guid: ca49f052125b7c24eb00e4e89d8c2a81, type: 3}
   Type: 1

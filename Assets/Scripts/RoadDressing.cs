@@ -16,13 +16,13 @@ public class RoadDressing : MonoBehaviour
             {           
                 //Instantiate();
                 GameObject obj = spot.RandomObject();
-                Debug.Log(spot.Position.position);
+
                 if (obj != null)
                 {
                     
-                    GameObject instance = Instantiate(obj, spot.Position.position, spot.Position.rotation);
+                    GameObject instance = Instantiate(obj, spot.Position);
                     
-                    //instance.transform.localPosition = spot.Position.localPosition;
+                    instance.transform.localPosition = Vector3.zero;
                 }
                     
             }

@@ -204,7 +204,7 @@ public class CharacterController : MonoBehaviour
 
     public void StartFlying()
     {
-        Debug.Log("Started");
+
         _isFlying = true;
         _animator.SetBool("Flying", true);
         Invoke("StopFlying", .5f);
@@ -212,7 +212,7 @@ public class CharacterController : MonoBehaviour
 
     public void StopFlying()
     {
-        Debug.Log("Stopped");
+        
         _isFlying = false;
         _animator.SetBool("Flying", false);
     }

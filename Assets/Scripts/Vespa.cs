@@ -33,6 +33,11 @@ public class Vespa : MonoBehaviour
     private float _maxMagnitude = 10f;
 
     private Vector3 _lastVelocity;
+
+    [SerializeField]
+    private Transform _contactCheck;
+    [SerializeField]
+    private float _contactDistance;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
@@ -68,7 +73,7 @@ public class Vespa : MonoBehaviour
 
     public void RideVespa(InputAction.CallbackContext context)
     {
-        Debug.Log("Entered " + _isRiding);
+        
         if (_near && context.started)
         {
             //get in
@@ -121,13 +126,14 @@ public class Vespa : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        //Vector3 contactPoint = collision.contacts[0].point;
+        Vector3 contactPoint = collision.contacts[0].point;
+        float nearCheck = Vector3.Distance(contactPoint, _contactCheck.position);
         //Vector3 contactDirection = contactPoint - this.transform.position;
         
         //float parallel = Vector3.Dot(contactDirection, this.transform.forward);
-        
+        Debug.Log(nearCheck);
         //if we collide at over a certain magnitude
-        if (_lastVelocity.magnitude > _maxMagnitude)
+        if (_lastVelocity.magnitude > _maxMagnitude && nearCheck < _contactDistance)
         {
             //we dismount from a collision
             Dismount(true);

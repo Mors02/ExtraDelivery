@@ -1,3 +1,4 @@
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Animations;
@@ -20,14 +21,21 @@ public class Cell : MonoBehaviour
 
     public Tile SelectedTile => _selectedTile;
 
+    [SerializeField]
+    private int _totalValue, _averageValue;
+
+
     public void CreateCell(bool collapseState, Tile[] tiles)
     {
         _collapsed = collapseState;
         _tileOptions = tiles;
+
     }
 
     public void Recreatecell(Tile[] tiles)
     {
+        if (tiles.Length == 0)
+            Debug.LogError("No tiles on " + this.name);
         _tileOptions = tiles;
     }
 
@@ -41,4 +49,23 @@ public class Cell : MonoBehaviour
         obj.transform.SetParent(this.transform);
 
     }
+
+    public int AverageValue()
+    {
+        if (_tileOptions.Length == 0)
+        {
+            _averageValue = 0;
+            return 0;
+        }
+            
+        _averageValue = _tileOptions.Sum(tile => tile.Value) / _tileOptions.Length;
+        return _averageValue;
+    }
+
+    public int TotalValue()
+    {
+        return _tileOptions.Sum(tile => tile.Value);
+    }
+
+
 }

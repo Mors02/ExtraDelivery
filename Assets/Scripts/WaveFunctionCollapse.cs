@@ -20,6 +20,9 @@ public class WaveFunctionCollapse : MonoBehaviour
    [SerializeField]
    private Tile _backupTile;
 
+   [SerializeField]
+   private int _startingTile;
+
     private void Awake()
     {
         _gridComponents = new List<Cell>();
@@ -42,6 +45,9 @@ public class WaveFunctionCollapse : MonoBehaviour
             }
         }
 
+        _gridComponents[_startingTile].Collapse(_backupTile);
+        UpdateGeneration(_startingTile);
+
         StartCoroutine("CheckEntropy");
     }
 
@@ -51,18 +57,31 @@ public class WaveFunctionCollapse : MonoBehaviour
     /// <returns></returns>
     private IEnumerator CheckEntropy()
     {
+        
         List<Cell> tempGrid = new List<Cell>(_gridComponents);
         //remove all the collapsed cells
         tempGrid.RemoveAll(c => c.Collapsed);
-        //reorder the cells based on how many options they have
-        tempGrid.Sort((a, b) => a.TileOptions.Length - b.TileOptions.Length);
-        //remove all the cells except the first (and the ones that have the same amount of options)
-        tempGrid.RemoveAll(a => a.TileOptions.Length != tempGrid[0].TileOptions.Length);
 
-        yield return new WaitForSeconds(0.075f);
+        if (tempGrid.Count != 0)
+        {
+        
+            //reorder the cells based on how many options they have
+            
+            //tempGrid.Sort((a, b) =>  b.AverageValue() - a.AverageValue());
+            tempGrid = tempGrid.OrderBy((a) => a.AverageValue()).ThenBy((a) => a.TileOptions.Length).ToList();
+            Debug.Log(tempGrid[0].AverageValue());
+            if (tempGrid[0].AverageValue() == 0)
+                Debug.LogError(tempGrid[0].name + " has value 0");
+            //tempGrid.Sort((a, b) => a.TileOptions.Length - b.TileOptions.Length);
+            //remove all the cells except the first (and the ones that have the same amount of options)
+            //tempGrid.RemoveAll(a => a.TileOptions.Length != tempGrid[0].TileOptions.Length);
+            tempGrid.RemoveAll(a => a.AverageValue() != tempGrid[0].AverageValue());
 
-        if (tempGrid.Count > 0)
+            //yield return new WaitForSeconds(0.001f);
+            yield return new WaitForSeconds(0.075f);
             CollapseCell(tempGrid); 
+            
+        }
     }
 
     /// <summary>
@@ -73,12 +92,12 @@ public class WaveFunctionCollapse : MonoBehaviour
     {
         int randIndex = UnityEngine.Random.Range(0, tempGrid.Count);
         //get random cell
-        Cell cellToCollapse = tempGrid[randIndex];
+        Cell cellToCollapse = tempGrid[0];
         
         //get a random tile from the list
         try
         {
-            
+            Debug.Log( cellToCollapse.name + " value " + cellToCollapse.AverageValue());
             int randomTile = UnityEngine.Random.Range(0, cellToCollapse.TileOptions.Length);
             Tile selectedTile = cellToCollapse.TileOptions[randomTile];
             cellToCollapse.Collapse(selectedTile);
@@ -86,8 +105,7 @@ public class WaveFunctionCollapse : MonoBehaviour
         }
         catch
         {
-            Debug.Log(int.Parse(cellToCollapse.name.Split(" ")[1]) + " has 0 options");
-            Debug.Log(tempGrid.Count);
+            Debug.LogError(int.Parse(cellToCollapse.name.Split(" ")[1]) + " has 0 options");
             Tile selectedTile = _backupTile;
             cellToCollapse.Collapse(selectedTile);
             //Instantiate(selectedTile, cellToCollapse.transform.position, selectedTile.transformHandle.rotation);
