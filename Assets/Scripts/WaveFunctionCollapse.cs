@@ -77,8 +77,8 @@ public class WaveFunctionCollapse : MonoBehaviour
             //tempGrid.RemoveAll(a => a.TileOptions.Length != tempGrid[0].TileOptions.Length);
             tempGrid.RemoveAll(a => a.AverageValue() != tempGrid[0].AverageValue());
 
-            //yield return new WaitForSeconds(0.001f);
-            yield return new WaitForSeconds(0.075f);
+            yield return new WaitForSeconds(0.001f);
+            //yield return new WaitForSeconds(0.075f);
             CollapseCell(tempGrid); 
             
         }
