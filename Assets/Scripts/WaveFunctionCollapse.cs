@@ -29,6 +29,9 @@ public class WaveFunctionCollapse : MonoBehaviour
         InitializeGrid();
     }
 
+    [SerializeField]
+    private RoadConnections _roadConnections;
+
     /// <summary>
     /// Defines the grid and populates it
     /// </summary>
@@ -77,10 +80,13 @@ public class WaveFunctionCollapse : MonoBehaviour
             //tempGrid.RemoveAll(a => a.TileOptions.Length != tempGrid[0].TileOptions.Length);
             tempGrid.RemoveAll(a => a.AverageValue() != tempGrid[0].AverageValue());
 
-            yield return new WaitForSeconds(0.001f);
-            //yield return new WaitForSeconds(0.075f);
+            //yield return new WaitForSeconds(0.001f);
+            yield return new WaitForSeconds(0.075f);
             CollapseCell(tempGrid); 
             
+        } else
+        {
+            _roadConnections.CreateRoadSystem(_gridComponents, _dimensions);
         }
     }
 
