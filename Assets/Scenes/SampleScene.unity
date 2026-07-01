@@ -604,7 +604,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5953102590661345978, guid: e5e6f268cacd39a45801997cfa7368d2, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6473497782721419264, guid: e5e6f268cacd39a45801997cfa7368d2, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1171,11 +1171,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5883477777166805336, guid: e5e6f268cacd39a45801997cfa7368d2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.751
+      value: 0.67
       objectReference: {fileID: 0}
     - target: {fileID: 5883477777166805336, guid: e5e6f268cacd39a45801997cfa7368d2, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.29
+      value: 0.974
       objectReference: {fileID: 0}
     - target: {fileID: 5953102590661345978, guid: e5e6f268cacd39a45801997cfa7368d2, type: 3}
       propertyPath: m_Name
@@ -1187,7 +1187,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6473497782721419264, guid: e5e6f268cacd39a45801997cfa7368d2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -54.04
+      value: -61.8
       objectReference: {fileID: 0}
     - target: {fileID: 6473497782721419264, guid: e5e6f268cacd39a45801997cfa7368d2, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1195,7 +1195,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6473497782721419264, guid: e5e6f268cacd39a45801997cfa7368d2, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 92.25
+      value: 91.62
       objectReference: {fileID: 0}
     - target: {fileID: 6473497782721419264, guid: e5e6f268cacd39a45801997cfa7368d2, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1265,7 +1265,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 1218081754}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 1
+  m_Radius: 0.5
   m_Speed: 10
   m_Acceleration: 12
   avoidancePriority: 50
@@ -1274,7 +1274,7 @@ NavMeshAgent:
   m_AutoTraverseOffMeshLink: 0
   m_AutoBraking: 1
   m_AutoRepath: 1
-  m_Height: 2
+  m_Height: 1
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4

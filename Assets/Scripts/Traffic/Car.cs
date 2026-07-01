@@ -15,6 +15,9 @@ public class Car : MonoBehaviour
     [SerializeField]
     private float _turnSpeed;
 
+    private float _parallel;
+    private float _baseSpeed;
+
     private Vector3 _currentDirection;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -23,6 +26,7 @@ public class Car : MonoBehaviour
         this._agent.destination = _target.position;
         _agent.updateRotation = false;
         _agent.updatePosition = true;
+        _baseSpeed = _agent.speed;
         //_agent.updatePosition = false;
     }
 
@@ -46,7 +50,11 @@ public class Car : MonoBehaviour
         {   
             //to get the shortest rotation, look at the dot to see if we can actually invert it
             Quaternion end = Quaternion.LookRotation(_currentDirection);
-            if (_showDebug) Debug.Log(gameObject.name + " " + Quaternion.Dot(_agent.transform.rotation, end));
+            _parallel = Vector3.Dot(_currentDirection, transform.forward);
+            _agent.speed = _baseSpeed * _parallel;
+            
+            if (_showDebug) Debug.Log(_parallel);
+            //if (_showDebug) Debug.Log(gameObject.name + " " + Quaternion.Dot(_agent.transform.rotation, end));
             if (Quaternion.Dot(_agent.transform.rotation, end) < 0.0f)
             {
                 end = new Quaternion(-end.x, -end.y, -end.z, -end.w);
