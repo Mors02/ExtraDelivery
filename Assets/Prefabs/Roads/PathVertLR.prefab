@@ -445,7 +445,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2414708036807322298, guid: ec18f34ef7bead94f84a7880e07be33b, type: 3}
       propertyPath: Side
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2414708036807322298, guid: ec18f34ef7bead94f84a7880e07be33b, type: 3}
       propertyPath: DirectedToward
@@ -456,12 +456,16 @@ PrefabInstance:
       value: ConnectingPoints
       objectReference: {fileID: 0}
     - target: {fileID: 4889394420109740816, guid: ec18f34ef7bead94f84a7880e07be33b, type: 3}
+      propertyPath: Side
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4889394420109740816, guid: ec18f34ef7bead94f84a7880e07be33b, type: 3}
       propertyPath: DirectedToward
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5859709357986585199, guid: ec18f34ef7bead94f84a7880e07be33b, type: 3}
       propertyPath: Side
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5859709357986585199, guid: ec18f34ef7bead94f84a7880e07be33b, type: 3}
       propertyPath: DirectedToward
@@ -510,6 +514,10 @@ PrefabInstance:
     - target: {fileID: 8432687481064413762, guid: ec18f34ef7bead94f84a7880e07be33b, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8619254443604604691, guid: ec18f34ef7bead94f84a7880e07be33b, type: 3}
+      propertyPath: Side
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8619254443604604691, guid: ec18f34ef7bead94f84a7880e07be33b, type: 3}
       propertyPath: DirectedToward

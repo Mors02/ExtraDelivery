@@ -73,7 +73,7 @@ public class RoadConnections : MonoBehaviour
 
         Debug.Log(connectionPoints.Count);
         //retrieve the points with the correct direction on the starting side of link
-        List<RoadConnectPoint> directedPoints = connectionPoints.Where(point => {return point.Side == startSide && point.DirectedToward == OppositeOf(connectingToward);}).ToList();
+        List<RoadConnectPoint> directedPoints = connectionPoints.Where(point => {return point.Side == startSide && point.DirectedToward == connectingToward;}).ToList();
         if (directedPoints.Count == 0)
             return;
         startPoint = directedPoints[0];
@@ -89,17 +89,17 @@ public class RoadConnections : MonoBehaviour
             //ignore everything that isn't a road
             if (oppositeCell.SelectedTile.Type != TileType.Road)
                 return;
-            List<RoadConnectPoint> oppositeCellPoints = oppositeCell.GetComponentInChildren<Tile>().RoadConnectionsPoints.Where(point => point.Side == endSide && point.DirectedToward == connectingToward).ToList();
+            List<RoadConnectPoint> oppositeCellPoints = oppositeCell.GetComponentInChildren<Tile>().RoadConnectionsPoints.Where(point => point.Side == endSide && point.DirectedToward == OppositeOf(connectingToward)).ToList();
             //if the opposite cell doesn't have points in the correct direction
             if (oppositeCellPoints.Count == 0)
                 return;
             //retrieve the respective point on the other cell (it should always be one)
             RoadConnectPoint oppositePoint = oppositeCellPoints[0];
             //create the link 
-            NavMeshLink link = Instantiate(_linkPrefab, this.transform);   
+            NavMeshLink link = Instantiate(_linkPrefab, startPoint.transform);   
             //set up start and end
-            link.startPoint = startPoint.transform.position;
-            link.endPoint = oppositePoint.transform.position;        
+            link.startTransform = startPoint.transform;
+            link.endTransform = oppositePoint.transform;        
         }
     } 
 
@@ -141,12 +141,12 @@ public class RoadConnections : MonoBehaviour
         switch(direction)
         {
             case Direction.Down:
-                validIndex = y > 0;
-                return x + (y-1) * _dimensions;
-            
-            case Direction.Up:
                 validIndex = y < _dimensions-1;
                 return x + (y+1) * _dimensions;
+            
+            case Direction.Up:
+                validIndex = y > 0;
+                return x + (y-1) * _dimensions;
 
             case Direction.Left:
                 validIndex = x < _dimensions-1;

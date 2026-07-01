@@ -46,12 +46,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.AI.Navigation::Unity.AI.Navigation.NavMeshLink
   m_SerializedVersion: 1
   m_AgentTypeID: 0
-  m_StartPoint: {x: 0, y: 0, z: -3}
-  m_EndPoint: {x: 0, y: 0, z: 3}
+  m_StartPoint: {x: 0, y: 0, z: -2}
+  m_EndPoint: {x: 0, y: 0, z: 2}
   m_StartTransform: {fileID: 0}
   m_EndTransform: {fileID: 0}
   m_Activated: 1
-  m_Width: 4
+  m_Width: 1
   m_CostModifier: 1
   m_IsOverridingCost: 0
   m_Bidirectional: 0

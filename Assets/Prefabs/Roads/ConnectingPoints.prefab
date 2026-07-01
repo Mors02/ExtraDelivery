@@ -13,7 +13,7 @@ GameObject:
   m_Layer: 0
   m_Name: Point_LL
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 1391843499501451749}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 13.94, y: 0, z: -3.91}
+  m_LocalPosition: {x: 12, y: 0, z: -5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -44,8 +44,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33d515ec7b6a2234b9751feab5614b59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RoadConnectPoint
-  _side: 1
+  Side: 0
   _connected: 0
+  DirectedToward: 0
 --- !u!1 &3609132276138040347
 GameObject:
   m_ObjectHideFlags: 0
@@ -98,7 +99,7 @@ GameObject:
   m_Layer: 0
   m_Name: Point_TL
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -111,7 +112,7 @@ Transform:
   m_GameObject: {fileID: 5621514834796446635}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4.529999, y: 0, z: -14.8}
+  m_LocalPosition: {x: 5, y: 0, z: -12}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -129,8 +130,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33d515ec7b6a2234b9751feab5614b59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RoadConnectPoint
-  _side: 0
+  Side: 0
   _connected: 0
+  DirectedToward: 0
 --- !u!1 &6408861017853763618
 GameObject:
   m_ObjectHideFlags: 0
@@ -144,7 +146,7 @@ GameObject:
   m_Layer: 0
   m_Name: Point_BR
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -157,7 +159,7 @@ Transform:
   m_GameObject: {fileID: 6408861017853763618}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.54, y: 0, z: 14.19}
+  m_LocalPosition: {x: -5, y: 0, z: 12}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -175,8 +177,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33d515ec7b6a2234b9751feab5614b59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RoadConnectPoint
-  _side: 1
+  Side: 0
   _connected: 0
+  DirectedToward: 0
 --- !u!1 &7359625336409700812
 GameObject:
   m_ObjectHideFlags: 0
@@ -190,7 +193,7 @@ GameObject:
   m_Layer: 0
   m_Name: Point_BL
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -203,7 +206,7 @@ Transform:
   m_GameObject: {fileID: 7359625336409700812}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.53, y: 0, z: 14.02}
+  m_LocalPosition: {x: 5, y: 0, z: 12}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -221,8 +224,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33d515ec7b6a2234b9751feab5614b59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RoadConnectPoint
-  _side: 0
+  Side: 0
   _connected: 0
+  DirectedToward: 0
 --- !u!1 &7768977517366151282
 GameObject:
   m_ObjectHideFlags: 0
@@ -236,7 +240,7 @@ GameObject:
   m_Layer: 0
   m_Name: Point_TR
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -249,7 +253,7 @@ Transform:
   m_GameObject: {fileID: 7768977517366151282}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.540001, y: 0, z: -14.63}
+  m_LocalPosition: {x: -5, y: 0, z: -12}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -267,8 +271,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33d515ec7b6a2234b9751feab5614b59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RoadConnectPoint
-  _side: 1
+  Side: 0
   _connected: 0
+  DirectedToward: 0
 --- !u!1 &8432687481064413762
 GameObject:
   m_ObjectHideFlags: 0
@@ -282,7 +287,7 @@ GameObject:
   m_Layer: 0
   m_Name: Point_RR
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -295,7 +300,7 @@ Transform:
   m_GameObject: {fileID: 8432687481064413762}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -13.6, y: 0, z: 4.9}
+  m_LocalPosition: {x: -12, y: 0, z: 5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -313,8 +318,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33d515ec7b6a2234b9751feab5614b59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RoadConnectPoint
-  _side: 0
+  Side: 0
   _connected: 0
+  DirectedToward: 0
 --- !u!1 &8655364198718657795
 GameObject:
   m_ObjectHideFlags: 0
@@ -328,7 +334,7 @@ GameObject:
   m_Layer: 0
   m_Name: Point_LR
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -341,7 +347,7 @@ Transform:
   m_GameObject: {fileID: 8655364198718657795}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 13.8, y: 0, z: 4.9}
+  m_LocalPosition: {x: 12, y: 0, z: 5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -359,8 +365,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33d515ec7b6a2234b9751feab5614b59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RoadConnectPoint
-  _side: 0
+  Side: 0
   _connected: 0
+  DirectedToward: 0
 --- !u!1 &8751586617730186107
 GameObject:
   m_ObjectHideFlags: 0
@@ -374,7 +381,7 @@ GameObject:
   m_Layer: 0
   m_Name: Point_RL
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -387,7 +394,7 @@ Transform:
   m_GameObject: {fileID: 8751586617730186107}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -13.46, y: 0, z: -3.91}
+  m_LocalPosition: {x: -12, y: 0, z: -5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -405,5 +412,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33d515ec7b6a2234b9751feab5614b59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RoadConnectPoint
-  _side: 1
+  Side: 0
   _connected: 0
+  DirectedToward: 0
